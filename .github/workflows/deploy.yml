@@ -1,0 +1,101 @@
+name: Deploy mkboard
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.x"
+          cache: "npm"
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Run tests
+        run: npm run test
+        env:
+          DATABASE_CLIENT: sqlite
+          NODE_COMPILE_CACHE: /tmp/node-compile-cache
+          
+      - name: Build application
+        run: npm run build -- --no-stats
+        env:
+          NODE_ENV: production
+          
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-files
+          path: |
+            root/lib/
+            root/public/assets/
+          retention-days: 7
+
+  # Uncomment and configure for Vercel deployment
+  # deploy-vercel:
+  #   needs: build-and-test
+  #   runs-on: ubuntu-latest
+  #   if: github.ref == 'refs/heads/master'
+  #   
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     
+  #     - uses: actions/setup-node@v4
+  #       with:
+  #         node-version: "22.x"
+  #         cache: "npm"
+  #         
+  #     - name: Install Vercel CLI
+  #       run: npm install -g vercel
+  #       
+  #     - name: Deploy to Vercel
+  #       run: vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
+  #       env:
+  #         VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  #         VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+  # Uncomment and configure for Railway deployment
+  # deploy-railway:
+  #   needs: build-and-test
+  #   runs-on: ubuntu-latest
+  #   if: github.ref == 'refs/heads/master'
+  #   
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     
+  #     - name: Deploy to Railway
+  #       uses: bervProject/railway-deploy@v1.0.0
+  #       with:
+  #         railway_token: ${{ secrets.RAILWAY_TOKEN }}
+  #         service: "mkboard"
+
+  # Docker build for container deployments
+  build-docker:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        
+      - name: Build Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: false
+          tags: mkboard:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
