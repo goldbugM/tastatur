@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunktastatur_com=self.webpackChunktastatur_com||[]).push([[2676],{2676:(s,e,l)=>{l.r(e),l.d(e,{default:()=>d});var c=l(4922),n=l(7073),r=l(672),t=l(1020),u=l(1863);const d=function(){return(0,c.jsxs)(n.n,{children:[(0,c.jsx)(r.Y,{level:1,children:(0,c.jsx)(u.A,{id:"ckluNoJz"})}),(0,c.jsx)(t.l,{children:(0,c.jsx)(u.A,{id:"FCVmW0Dy"})}),(0,c.jsx)(t.l,{children:(0,c.jsx)(u.A,{id:"59BWHRWY"})}),(0,c.jsx)(t.l,{children:(0,c.jsx)(u.A,{id:"UuJuXxbF"})})]})}}}]);
+//# sourceMappingURL=074a84039b36b664.js.map

@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunktastatur_com=self.webpackChunktastatur_com||[]).push([[338],{338:(t,u,a)=>{a.r(u),a.d(u,{default:()=>r});var s=a(4922),e=a(2929);function r(){return(0,s.jsx)(e.fP,{})}}}]);
+//# sourceMappingURL=2b8e25d6514f408b.js.map

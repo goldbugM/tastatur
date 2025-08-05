@@ -1,146 +1,41 @@
-# 🎯 mkboard - Advanced Typing Tutor
+[![CI](https://github.com/aradzie/keybr.com/actions/workflows/ci.yml/badge.svg)](https://github.com/aradzie/keybr.com/actions/workflows/ci.yml)
 
-A modern, feature-rich typing tutor application built with React and Node.js. Learn and improve your typing skills with interactive lessons, multiple languages, and comprehensive progress tracking.
+# [keybr.com](https://www.keybr.com/) is not (just) a typing test
 
-## ✨ Features
+<p align="center">
+    <img src="assets/screenshot.png" alt="screenshot" width="600"/>
+</p>
 
-- **🌍 Multi-language Support** - Practice typing in various languages and keyboard layouts
-- **📊 Progress Tracking** - Monitor your typing speed, accuracy, and improvement over time
-- **🎨 Customizable Themes** - Choose from multiple themes and customize your learning experience
-- **🏆 Achievements & Highscores** - Track your progress and compete with others
-- **⌨️ Custom Keyboard Layouts** - Support for different keyboard layouts and languages
-- **📱 Responsive Design** - Works seamlessly on desktop, tablet, and mobile devices
-- **🔧 Advanced Settings** - Customize difficulty, lesson types, and practice modes
+It's the smartest way to learn touch typing and improve your typing speed.
+On the surface, it looks pretty simple: it shows you a piece of text, and you type it out.
+But the devil is in the details — keybr.com offers a few unique features:
 
-## 🚀 Quick Start
+* keybr.com tracks every single keystroke and computes statistics for each individual key.
+* It automatically generates lessons that focus on your weakest keys.
+* You can set your own target typing speed, and it tracks your progress toward that goal.
+* It starts with a small set of the most frequent letters in your language.
+* More letters are added once you reach the target speed with the current ones.
+* It can even predict how many more lessons you will need to complete to reach your target speed.
+* It provides a beautiful profile page with detailed graphs showing your learning progress.
+* It offers plenty of modes and configuration options.
 
-### Prerequisites
+<p align="center">
+    <img src="docs/assets/graph.png" alt="screenshot" width="600"/>
+</p>
 
-- Node.js 22.x or higher
-- npm or yarn package manager
+## Can I contribute?
 
-### Installation
+Yes!
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/goldbugM/mykboard.git
-   cd mykboard
-   ```
+* **[Give us a ⭐️.](https://github.com/aradzie/keybr.com)** Help this project gain visibility and stand out.
+* **[Report a bug.](https://github.com/aradzie/keybr.com/issues)** If something is not working, let us know.
+* **[Suggest a feature.](https://github.com/aradzie/keybr.com/issues)** We are open to new ideas.
+* **[Translate.](./docs/translations.md)** If you want to see keybr.com in your language.
+* **[Getting started.](./docs/getting_started.md)** Launch a local instance of keybr.com, make a pull request.
+* **[Add a keyboard.](docs/custom_keyboard.md)** Add a custom keyboard to keybr.com
+* **[Add a language.](docs/custom_language.md)** Add a custom language to keybr.com
+* **[Join our Discord server](https://discord.gg/gY4RA4enVH).** To discuss things in a less formal way.
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+## License
 
-3. **Build the application**
-   ```bash
-   npm run build
-   ```
-
-4. **Start the development server**
-   ```bash
-   npm run start-dev
-   ```
-
-5. **Open your browser**
-   Navigate to `http://localhost:3000`
-
-## 🛠️ Development
-
-### Available Scripts
-
-- `npm run start-dev` - Start development server
-- `npm run build` - Build for production
-- `npm run test` - Run tests
-- `npm run lint` - Run ESLint
-- `npm run format` - Format code with Prettier
-
-### Project Structure
-
-```
-mkboard/
-├── packages/           # Modular packages
-│   ├── mkboard-*      # Core application modules
-│   ├── page-*         # Page components
-│   └── server/        # Server-side code
-├── root/              # Application root
-│   ├── public/        # Static assets
-│   └── lib/           # Compiled server code
-├── assets/            # Source assets
-└── docs/              # Documentation
-```
-
-## 🌐 Deployment
-
-**⚠️ Important**: mkboard is a full-stack Node.js application and **cannot be deployed to GitHub Pages**. GitHub Pages only supports static websites.
-
-### Recommended Deployment Platforms
-
-1. **🚀 Vercel** (Recommended)
-   ```bash
-   npm install -g vercel
-   vercel
-   ```
-
-2. **🌐 Railway**
-   - Connect your GitHub repository
-   - Automatic deployment
-
-3. **☁️ Netlify**
-   - Supports serverless functions
-   - Good for Node.js applications
-
-4. **🐳 Docker**
-   ```bash
-   docker build -t mkboard .
-   docker run -p 3000:3000 mkboard
-   ```
-
-For detailed deployment instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md).
-
-## 🔧 Configuration
-
-### Environment Variables
-
-Create a `.env` file in the root directory:
-
-```env
-NODE_ENV=production
-PORT=3000
-DATABASE_URL=your_database_url
-CANONICAL_URL=https://yourdomain.com
-```
-
-### Database Setup
-
-The application supports:
-- SQLite (development)
-- PostgreSQL (production)
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the GPL-3 License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- Based on the original keybr.com project
-- Built with React, Node.js, and modern web technologies
-- Thanks to all contributors and the open-source community
-
-## 📞 Support
-
-- 📧 Issues: [GitHub Issues](https://github.com/goldbugM/mykboard/issues)
-- 📖 Documentation: [docs/](./docs/)
-- 🚀 Deployment Guide: [DEPLOYMENT.md](./DEPLOYMENT.md)
-
----
-
-**Ready to improve your typing skills?** 🎯 Deploy mkboard today and start your typing journey!
+Released under the GNU Affero General Public License v3.0.
