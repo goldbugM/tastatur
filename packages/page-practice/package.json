@@ -1,0 +1,40 @@
+{
+  "private": true,
+  "name": "@mkboard/page-practice",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "lib/index.ts",
+  "types": ".types/index.d.ts",
+  "dependencies": {
+    "@mkboard/chart": "*",
+    "@mkboard/code": "*",
+    "@mkboard/content": "*",
+    "@mkboard/debug": "*",
+    "@mkboard/intl": "*",
+    "@mkboard/keyboard": "*",
+    "@mkboard/keyboard-ui": "*",
+    "@mkboard/lang": "*",
+    "@mkboard/lesson": "*",
+    "@mkboard/lesson-loader": "*",
+    "@mkboard/lesson-ui": "*",
+    "@mkboard/math": "*",
+    "@mkboard/pages-shared": "*",
+    "@mkboard/phonetic-model": "*",
+    "@mkboard/phonetic-model-loader": "*",
+    "@mkboard/rand": "*",
+    "@mkboard/result": "*",
+    "@mkboard/settings": "*",
+    "@mkboard/textinput": "*",
+    "@mkboard/textinput-events": "*",
+    "@mkboard/textinput-sounds": "*",
+    "@mkboard/textinput-ui": "*",
+    "@mkboard/unicode": "*",
+    "@mkboard/widget": "*"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "clean": "rm -fr .types",
+    "compile": "tsc",
+    "test": "tstest --import=@mkboard/test-env-browser --import=@mkboard/test-env-bundler --test 'lib/**/*.test.{ts,tsx}'"
+  }
+}

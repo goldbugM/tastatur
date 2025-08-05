@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "name": "@mkboard/server",
+  "version": "0.0.0",
+  "bin": {
+    "mkboard": "./mkboard.js"
+  }
+}

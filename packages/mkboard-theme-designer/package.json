@@ -1,0 +1,35 @@
+{
+  "private": true,
+  "name": "@mkboard/theme-designer",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "lib/index.ts",
+  "types": ".types/index.d.ts",
+  "dependencies": {
+    "@mkboard/chart": "*",
+    "@mkboard/color": "*",
+    "@mkboard/intl": "*",
+    "@mkboard/keyboard": "*",
+    "@mkboard/keyboard-ui": "*",
+    "@mkboard/lang": "*",
+    "@mkboard/lesson": "*",
+    "@mkboard/lesson-ui": "*",
+    "@mkboard/phonetic-model": "*",
+    "@mkboard/settings": "*",
+    "@mkboard/textinput": "*",
+    "@mkboard/textinput-events": "*",
+    "@mkboard/textinput-ui": "*",
+    "@mkboard/themes": "*",
+    "@mkboard/widget": "*",
+    "@zip.js/zip.js": "^2.7.69"
+  },
+  "devDependencies": {
+    "@mkboard/scripts": "*",
+    "css-tree": "^3.1.0"
+  },
+  "scripts": {
+    "clean": "rm -fr .types",
+    "compile": "tsc",
+    "test": "tstest --import=@mkboard/test-env-browser --import=@mkboard/test-env-bundler --test 'lib/**/*.test.{ts,tsx}'"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "name": "@mkboard/server-cli",
+  "version": "0.0.0",
+  "type": "module",
+  "dependencies": {
+    "@mkboard/binary": "*",
+    "@mkboard/config": "*",
+    "@mkboard/database": "*",
+    "@mkboard/publicid": "*",
+    "@mkboard/result": "*",
+    "@mkboard/result-io": "*",
+    "@mkboard/result-userdata": "*",
+    "commander": "^14.0.0",
+    "date-fns": "^4.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "clean": "rm -fr .types",
+    "compile": "tsc",
+    "test": "tstest --import=@mkboard/test-env-server --test 'lib/**/*.test.{ts,tsx}'"
+  }
+}

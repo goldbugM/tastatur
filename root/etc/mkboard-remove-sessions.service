@@ -1,0 +1,12 @@
+[Unit]
+Description=mkboard.com stale session removal service
+
+[Service]
+ExecStart=/bin/bash /opt/mkboard/etc/mkboard-remove-sessions.sh
+Type=oneshot
+WorkingDirectory=/opt/mkboard
+# User=www-data
+# Group=www-data
+
+[Install]
+WantedBy=multi-user.target

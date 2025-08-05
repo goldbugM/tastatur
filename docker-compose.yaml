@@ -1,0 +1,10 @@
+services:
+  mkboard:
+    build:
+      dockerfile: ./Dockerfile
+    volumes:
+      - /path/to/data_dir:~/.local/state/mkboard
+      - /path/to/data_dir/.env:/etc/mkboard/env
+    ports:
+      - 30044:3000
+    restart: unless-stopped

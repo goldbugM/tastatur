@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "name": "@mkboard/debug",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "lib/index.ts",
+  "types": ".types/index.d.ts",
+  "dependencies": {
+    "@mkboard/widget": "*"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "clean": "rm -fr .types",
+    "compile": "tsc",
+    "test": "tstest --import=@mkboard/test-env-browser --import=@mkboard/test-env-bundler --test 'lib/**/*.test.{ts,tsx}'"
+  }
+}

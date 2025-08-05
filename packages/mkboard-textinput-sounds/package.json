@@ -1,0 +1,20 @@
+{
+  "private": true,
+  "name": "@mkboard/textinput-sounds",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "lib/index.ts",
+  "types": ".types/index.d.ts",
+  "dependencies": {
+    "@mkboard/lang": "*",
+    "@mkboard/rand": "*",
+    "@mkboard/request": "*",
+    "@mkboard/settings": "*",
+    "@mkboard/textinput": "*"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "clean": "rm -fr .types",
+    "compile": "tsc"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "name": "@mkboard/textinput",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "lib/index.ts",
+  "types": ".types/index.d.ts",
+  "dependencies": {
+    "@mkboard/keyboard": "*",
+    "@mkboard/lang": "*",
+    "@mkboard/settings": "*",
+    "@mkboard/themes": "*",
+    "@mkboard/unicode": "*"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "clean": "rm -fr .types",
+    "compile": "tsc",
+    "test": "tstest --test 'lib/**/*.test.{ts,tsx}'"
+  }
+}

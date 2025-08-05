@@ -1,0 +1,22 @@
+{
+  "private": true,
+  "name": "@mkboard/page-layouts",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "lib/index.ts",
+  "types": ".types/index.d.ts",
+  "dependencies": {
+    "@mkboard/intl": "*",
+    "@mkboard/keyboard": "*",
+    "@mkboard/keyboard-ui": "*",
+    "@mkboard/phonetic-model": "*",
+    "@mkboard/phonetic-model-loader": "*",
+    "@mkboard/widget": "*"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "clean": "rm -fr .types",
+    "compile": "tsc",
+    "test": "tstest --import=@mkboard/test-env-browser --import=@mkboard/test-env-bundler --test 'lib/**/*.test.{ts,tsx}'"
+  }
+}

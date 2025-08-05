@@ -1,0 +1,18 @@
+[Unit]
+Description=mkboard.com http server
+Wants=mysql.service
+Wants=nginx.service
+After=mysql.service
+After=nginx.service
+
+[Service]
+ExecStart=/usr/bin/node --enable-source-maps /opt/mkboard
+Type=simple
+Restart=always
+WorkingDirectory=/opt/mkboard
+Environment=NODE_ENV=production
+User=www-data
+Group=www-data
+
+[Install]
+WantedBy=multi-user.target

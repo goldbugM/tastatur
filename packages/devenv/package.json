@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "name": "@mkboard/devenv",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "lib/index.ts",
+  "types": ".types/index.d.ts",
+  "dependencies": {
+    "@mkboard/config": "*",
+    "@mkboard/database": "*",
+    "@mkboard/logger": "*"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "clean": "rm -fr .types",
+    "compile": "tsc"
+  }
+}

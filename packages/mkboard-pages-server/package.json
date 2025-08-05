@@ -1,0 +1,22 @@
+{
+  "private": true,
+  "name": "@mkboard/pages-server",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "lib/index.ts",
+  "types": ".types/index.d.ts",
+  "dependencies": {
+    "@mkboard/assets": "*",
+    "@mkboard/intl": "*",
+    "@mkboard/pages-shared": "*",
+    "@mkboard/themes": "*",
+    "@mkboard/thirdparties": "*",
+    "@mkboard/widget": "*"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "clean": "rm -fr .types",
+    "compile": "tsc",
+    "test": "tstest --import=@mkboard/test-env-browser --import=@mkboard/test-env-bundler --test 'lib/**/*.test.{ts,tsx}'"
+  }
+}
