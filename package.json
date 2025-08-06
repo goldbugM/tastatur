@@ -1,14 +1,14 @@
 {
   "private": true,
-  "name": "tastatur.com",
-  "version": "0.0.0",
+  "name": "mkboard-typing-app",
+  "version": "1.0.0",
   "type": "module",
-  "homepage": "https://www.tastatur.com",
+  "homepage": "http://localhost:3000",
   "license": "GPL-3",
   "author": "Aliaksandr Radzivanovich <aradzivanovich@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git@github.com:aradzie/tastatur.com.git"
+    "url": "https://github.com/goldbugM/tastatur.git"
   },
   "workspaces": [
     "packages/*",
