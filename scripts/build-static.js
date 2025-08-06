@@ -70,29 +70,35 @@ if (existsSync(manifestPath)) {
   console.warn("Manifest file not found at:", manifestPath);
 }
 
+// Helper function to get asset filename from manifest (cross-platform)
+function getAssetFilename(manifest, assetKey, defaultName) {
+  if (!manifest.assets) return defaultName;
+  
+  // Try different path formats (Windows and Unix)
+  const possibleKeys = [
+    `\\assets\\${assetKey}`,
+    `/assets/${assetKey}`,
+    `assets/${assetKey}`,
+    assetKey
+  ];
+  
+  for (const key of possibleKeys) {
+    if (manifest.assets[key]) {
+      return manifest.assets[key].replace(/^.*[\\\/]/, ""); // Remove path, keep filename
+    }
+  }
+  
+  return defaultName;
+}
+
 // Get asset filenames from manifest or use defaults
-const browserJs =
-  manifest.assets && manifest.assets["\\assets\\browser.js"]
-    ? manifest.assets["\\assets\\browser.js"].replace("\\assets\\", "")
-    : "browser.js";
-const serverJs =
-  manifest.assets && manifest.assets["\\assets\\server.js"]
-    ? manifest.assets["\\assets\\server.js"].replace("\\assets\\", "")
-    : "server.js";
+const browserJs = getAssetFilename(manifest, "browser.js", "browser.js");
+const serverJs = getAssetFilename(manifest, "server.js", "server.js");
 
 // Get favicon filenames from manifest
-const favicon16 =
-  manifest.assets && manifest.assets["\\assets\\favicon-16x16.png"]
-    ? manifest.assets["\\assets\\favicon-16x16.png"].replace("\\assets\\", "")
-    : "favicon-16x16.png";
-const favicon32 =
-  manifest.assets && manifest.assets["\\assets\\favicon-32x32.png"]
-    ? manifest.assets["\\assets\\favicon-32x32.png"].replace("\\assets\\", "")
-    : "favicon-32x32.png";
-const favicon96 =
-  manifest.assets && manifest.assets["\\assets\\favicon-96x96.png"]
-    ? manifest.assets["\\assets\\favicon-96x96.png"].replace("\\assets\\", "")
-    : "favicon-96x96.png";
+const favicon16 = getAssetFilename(manifest, "favicon-16x16.png", "favicon-16x16.png");
+const favicon32 = getAssetFilename(manifest, "favicon-32x32.png", "favicon-32x32.png");
+const favicon96 = getAssetFilename(manifest, "favicon-96x96.png", "favicon-96x96.png");
 
 // Get CSS from entrypoints.browser.assets.css (first CSS file)
 const stylesCSS =
@@ -101,7 +107,7 @@ const stylesCSS =
   manifest.entrypoints.browser.assets &&
   manifest.entrypoints.browser.assets.css &&
   manifest.entrypoints.browser.assets.css[0]
-    ? manifest.entrypoints.browser.assets.css[0].replace("\\assets\\", "")
+    ? manifest.entrypoints.browser.assets.css[0].replace(/^.*[\\\/]/, "") // Remove path, keep filename
     : "styles.css";
 
 // Create the main index.html
