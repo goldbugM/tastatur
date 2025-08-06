@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmkboard_typing_app=self.webpackChunkmkboard_typing_app||[]).push([[1308],{1308:(e,i,p)=>{p.r(i),p.d(i,{default:()=>r});var n=p(4922);function r(){return(0,n.jsx)("div",{children:"Theme Designer (Simplified)"})}}}]);
+//# sourceMappingURL=441e1e0a7debdd3c.js.map

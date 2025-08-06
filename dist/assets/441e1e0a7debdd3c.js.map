@@ -1,0 +1,1 @@
+{"version":3,"file":"441e1e0a7debdd3c.js","mappings":"oKAAe,SAASA,IACtB,OAAO,wDACT,C","sources":["webpack://mkboard-typing-app/./packages/mkboard-pages-browser/lib/themes/LazyThemeDesigner.tsx"],"sourcesContent":["export default function LazyThemeDesigner() {\n  return <div>Theme Designer (Simplified)</div>;\n}\n"],"names":["LazyThemeDesigner"],"sourceRoot":""}

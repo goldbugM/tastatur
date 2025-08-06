@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunktastatur_com=self.webpackChunktastatur_com||[]).push([[1308],{1308:(e,t,r)=>{r.r(t),r.d(t,{default:()=>u});var s=r(4922);function u(){return(0,s.jsx)("div",{children:"Theme Designer (Simplified)"})}}}]);
+//# sourceMappingURL=e4850cf95e24ab86.js.map

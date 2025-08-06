@@ -1,0 +1,7 @@
+# GitHub Pages configuration
+include:
+  - "_*"
+  - ".nojekyll"
+
+plugins:
+  - jekyll-redirect-from

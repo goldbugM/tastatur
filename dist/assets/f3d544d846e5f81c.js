@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmkboard_typing_app=self.webpackChunkmkboard_typing_app||[]).push([[338],{338:(p,a,e)=>{e.r(a),e.d(a,{default:()=>t});var n=e(4922),r=e(2868);function t(){return(0,n.jsx)(r.fP,{})}}}]);
+//# sourceMappingURL=f3d544d846e5f81c.js.map

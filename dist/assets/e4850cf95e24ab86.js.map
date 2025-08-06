@@ -1,0 +1,1 @@
+{"version":3,"file":"e4850cf95e24ab86.js","mappings":"wJAAe,SAASA,IACtB,OAAO,wDACT,C","sources":["webpack://tastatur.com/./packages/mkboard-pages-browser/lib/themes/LazyThemeDesigner.tsx"],"sourcesContent":["export default function LazyThemeDesigner() {\n  return <div>Theme Designer (Simplified)</div>;\n}\n"],"names":["LazyThemeDesigner"],"sourceRoot":""}
