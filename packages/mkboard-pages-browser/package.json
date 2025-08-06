@@ -17,7 +17,6 @@
     "@mkboard/result": "*",
     "@mkboard/settings": "*",
     "@mkboard/themes": "*",
-    "@mkboard/thirdparties": "*",
     "@mkboard/widget": "*"
   },
   "devDependencies": {},

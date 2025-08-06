@@ -2,7 +2,6 @@ import { type IncomingHeaders } from "@fastr/headers";
 import { FavIconAssets, ScriptAssets, StylesheetAssets } from "@mkboard/assets";
 import { getDir } from "@mkboard/intl";
 import {
-  isPremiumUser,
   LoadingProgress,
   PageDataScript,
   type PageInfo,
@@ -11,9 +10,6 @@ import {
   usePageData,
 } from "@mkboard/pages-shared";
 import { ThemePrefs, useTheme } from "@mkboard/themes";
-import {
-  Styles,
-} from "@mkboard/thirdparties";
 import { type ReactNode } from "react";
 import { useIntl } from "react-intl";
 import { isBot } from "./bot.ts";
@@ -29,9 +25,7 @@ export function Shell({
   const { publicUser } = usePageData();
   return (
     <Html>
-      <Head page={page}>
-
-      </Head>
+      <Head page={page}></Head>
       <Body>
         {isBot(headers) ? <Content page={page} /> : <LoadingProgress />}
       </Body>
@@ -94,20 +88,18 @@ function Content({ page }: { readonly page: PageInfo }) {
       {page.link.title && <p>{formatMessage(page.link.title)}</p>}
       <nav>
         <ul>
-          {[
-          Pages.practice,
-          Pages.typingTest,
-          Pages.layouts,
-        ].map(({ path, link }, index) => (
-            <li key={index}>
-              <a
-                href={Pages.intlPath(path, locale)}
-                title={link.title && formatMessage(link.title)}
-              >
-                {formatMessage(link.label)}
-              </a>
-            </li>
-          ))}
+          {[Pages.practice, Pages.typingTest, Pages.layouts].map(
+            ({ path, link }, index) => (
+              <li key={index}>
+                <a
+                  href={Pages.intlPath(path, locale)}
+                  title={link.title && formatMessage(link.title)}
+                >
+                  {formatMessage(link.label)}
+                </a>
+              </li>
+            ),
+          )}
         </ul>
       </nav>
     </>

@@ -10,7 +10,6 @@
     "@mkboard/intl": "*",
     "@mkboard/pages-shared": "*",
     "@mkboard/themes": "*",
-    "@mkboard/thirdparties": "*",
     "@mkboard/widget": "*"
   },
   "devDependencies": {},

@@ -1,10 +1,10 @@
 /* eslint-disable n/no-extraneous-import */
 
-import { dirname,join } from "node:path";
+import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { intlTransformer } from "@mkboard/scripts/intl-transformer.js";
 import { ManifestPlugin } from "@mkboard/scripts/webpack-manifest.js";
-import { ENV } from "@mkboard/thirdparties/webpack-env.js";
+// Removed thirdparties webpack environment
 import CompressionPlugin from "compression-webpack-plugin";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
@@ -165,7 +165,6 @@ export default [
     devtool: "source-map",
     plugins: [
       new webpack.DefinePlugin({
-        ...ENV,
         "typeof window": JSON.stringify("undefined"),
       }),
       new MiniCssExtractPlugin(),
@@ -179,7 +178,6 @@ export default [
     entry: {
       browser: "./packages/mkboard-pages-browser/lib/entry.ts",
       server: "./packages/mkboard-pages-server/lib/entry.ts",
-      ads: "./packages/thirdparties-ads/lib/entry.ts",
     },
     output: {
       path: join(__dirname, "root", "public", "assets"),
@@ -246,7 +244,6 @@ export default [
     devtool: "source-map",
     plugins: [
       new webpack.DefinePlugin({
-        ...ENV,
         "typeof window": JSON.stringify("object"),
       }),
       new MiniCssExtractPlugin({

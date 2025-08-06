@@ -1,4 +1,4 @@
-import { CookieDeclaration } from "@mkboard/thirdparties";
+// Removed thirdparties dependency
 import { Article } from "@mkboard/widget";
 import privacyPolicyHtml from "./privacy-policy.html.ts";
 import * as styles from "./static.module.less";
@@ -12,8 +12,7 @@ export function PrivacyPolicyPage() {
           __html: privacyPolicyHtml,
         }}
       />
-      <h1>Cookie Declaration</h1>
-      <CookieDeclaration />
+      {/* Cookie Declaration removed with third-party dependencies */}
     </Article>
   );
 }

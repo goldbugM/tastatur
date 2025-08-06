@@ -1,5 +1,4 @@
-import { isPremiumUser, usePageData } from "@mkboard/pages-shared";
-import { AdBanner } from "@mkboard/thirdparties";
+import { usePageData } from "@mkboard/pages-shared";
 import { PortalContainer, Toaster } from "@mkboard/widget";
 import { type ReactNode } from "react";
 import { NavMenu } from "./NavMenu.tsx";
@@ -13,7 +12,7 @@ export function Template({
   readonly children: ReactNode;
 }) {
   const { publicUser } = usePageData();
-  return isPremiumUser(publicUser) || process.env.NODE_ENV === "development" ? (
+  return (
     <div className={styles.bodyAlt}>
       <main className={styles.mainAlt}>
         {children}
@@ -23,24 +22,6 @@ export function Template({
       <nav className={styles.navAlt}>
         <NavMenu currentPath={path} />
       </nav>
-      <EnvName />
-    </div>
-  ) : (
-    <div className={`${styles.body} ${process.env.NODE_ENV === "development" ? "development" : ""}`}>
-      <main className={styles.main}>
-        {children}
-        <PortalContainer />
-        <Toaster />
-      </main>
-      <nav className={styles.nav}>
-        <NavMenu currentPath={path} />
-      </nav>
-      <div className={styles.topbar}>
-        <AdBanner name="BANNER_970X90_1" />
-      </div>
-      <div className={styles.sidebar}>
-        <AdBanner name="BANNER_160X600_1" />
-      </div>
       <EnvName />
     </div>
   );
