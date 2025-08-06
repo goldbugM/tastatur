@@ -1,7 +1,13 @@
 #!/usr/bin/env node
 
-import { cpSync, existsSync,mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { dirname,join } from "node:path";
+import {
+  cpSync,
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  writeFileSync,
+} from "node:fs";
+import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -54,7 +60,7 @@ if (existsSync(manifestPath)) {
     manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
     console.log(
       "Successfully loaded manifest with",
-      Object.keys(manifest.assets || {}).length,
+      Object.keys(manifest).length,
       "assets",
     );
   } catch (e) {
@@ -74,6 +80,20 @@ const serverJs =
     ? manifest.assets["\\assets\\server.js"].replace("\\assets\\", "")
     : "server.js";
 
+// Get favicon filenames from manifest
+const favicon16 =
+  manifest.assets && manifest.assets["\\assets\\favicon-16x16.png"]
+    ? manifest.assets["\\assets\\favicon-16x16.png"].replace("\\assets\\", "")
+    : "favicon-16x16.png";
+const favicon32 =
+  manifest.assets && manifest.assets["\\assets\\favicon-32x32.png"]
+    ? manifest.assets["\\assets\\favicon-32x32.png"].replace("\\assets\\", "")
+    : "favicon-32x32.png";
+const favicon96 =
+  manifest.assets && manifest.assets["\\assets\\favicon-96x96.png"]
+    ? manifest.assets["\\assets\\favicon-96x96.png"].replace("\\assets\\", "")
+    : "favicon-96x96.png";
+
 // Get CSS from entrypoints.browser.assets.css (first CSS file)
 const stylesCSS =
   manifest.entrypoints &&
@@ -92,10 +112,10 @@ const indexHtml = `<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Learn touch typing with this free online typing trainer">
   <title>Typing Trainer - Learn Touch Typing</title>
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
-  <link rel="stylesheet" href="/assets/${stylesCSS}">
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/${favicon16}">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/${favicon32}">
+  <link rel="icon" type="image/png" sizes="96x96" href="./assets/${favicon96}">
+  <link rel="stylesheet" href="./assets/${stylesCSS}">
   <style>
     body {
       margin: 0;
@@ -169,7 +189,7 @@ const indexHtml = `<!DOCTYPE html>
     };
     console.log('Page data initialized with messages:', Object.keys(window.__PAGE_DATA__.messages || {}).length, 'entries');
   </script>
-  <script src="/assets/${browserJs}"></script>
+  <script src="./assets/${browserJs}"></script>
 </body>
 </html>`;
 
@@ -189,10 +209,13 @@ routes.forEach((route) => {
     mkdirSync(routeDir, { recursive: true });
   }
 
-  const routeHtml = indexHtml.replace(
-    "<title>Typing Trainer - Learn Touch Typing</title>",
-    `<title>${route.title}</title>`,
-  );
+  // For subdirectories, use ../assets/ instead of ./assets/
+  const routeHtml = indexHtml
+    .replace(
+      "<title>Typing Trainer - Learn Touch Typing</title>",
+      `<title>${route.title}</title>`,
+    )
+    .replace(/\.\/assets\//g, "../assets/");
 
   writeFileSync(join(routeDir, "index.html"), routeHtml);
 });
