@@ -1,20 +1,6 @@
-import { cookiebotClientId } from "@mkboard/thirdparties";
-
 export function loadScripts(): Promise<boolean> {
-  return Promise.resolve()
-    .then(() =>
-      loadScript("https://consent.cookiebot.com/uc.js", (script) => {
-        script.id = "Cookiebot";
-        script.dataset.cbid = cookiebotClientId;
-        script.dataset.blockingmode = "auto";
-        script.dataset.framework = "TCFv2.2";
-      }),
-    )
-    .then(() => loadScript("https://a.pub.network/mkboard-com/pubfig.min.js"))
-    .then(
-      () => true,
-      () => false,
-    );
+  // Disabled - external advertising services removed
+  return Promise.resolve(false);
 }
 
 function loadScript(

@@ -42,20 +42,7 @@ export namespace Pages {
     { name: "twitter:creator", content: "@tastaturcom" },
   ];
 
-  export const account = {
-    path: "/account",
-    title: defineMessage({
-      id: "t_Account",
-      defaultMessage: "Account",
-    }),
-    link: {
-      label: defineMessage({
-        id: "t_Account",
-        defaultMessage: "Account",
-      }),
-    },
-    meta: [{ name: "robots", content: "noindex" }],
-  } satisfies PageInfo;
+
 
   export const practice = {
     path: "/",
@@ -154,35 +141,7 @@ export namespace Pages {
     ],
   } satisfies PageInfo;
 
-  export const termsOfService = {
-    path: "/terms-of-service",
-    title: defineMessage({
-      id: "t_Terms_of_Service",
-      defaultMessage: "Terms of Service",
-    }),
-    link: {
-      label: defineMessage({
-        id: "t_Terms_of_Service",
-        defaultMessage: "Terms of Service",
-      }),
-    },
-    meta: [{ name: "robots", content: "noindex" }],
-  } satisfies PageInfo;
 
-  export const privacyPolicy = {
-    path: "/privacy-policy",
-    title: defineMessage({
-      id: "t_Privacy_Policy",
-      defaultMessage: "Privacy Policy",
-    }),
-    link: {
-      label: defineMessage({
-        id: "t_Privacy_Policy",
-        defaultMessage: "Privacy Policy",
-      }),
-    },
-    meta: [{ name: "robots", content: "noindex" }],
-  } satisfies PageInfo;
 
 
 

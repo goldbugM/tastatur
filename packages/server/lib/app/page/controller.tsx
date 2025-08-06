@@ -11,10 +11,8 @@ import {
   PageInfo,
   Pages,
 } from "@mkboard/pages-shared";
-import { SettingsDatabase } from "@mkboard/settings-database";
 import { staticTheme, ThemeContext, ThemePrefs } from "@mkboard/themes";
 import { type IntlShape, RawIntlProvider } from "react-intl";
-import { type AuthState } from "../auth/index.ts";
 import { localePattern, pIntl, preferredLocale } from "./intl.ts";
 
 @injectable()
@@ -24,47 +22,35 @@ export class Controller {
   constructor(
     @inject("canonicalUrl") readonly canonicalUrl: string,
     readonly view: View,
-    readonly database: SettingsDatabase,
   ) {}
 
   @http.GET("/")
-  async ["index"](ctx: Context<RouterState & AuthState>) {
+  async ["index"](ctx: Context<RouterState>) {
     return this.renderPage(ctx, Pages.practice);
   }
 
   @http.GET(`/{locale:${localePattern}}`)
   async ["index-i18n"](
-    ctx: Context<RouterState & AuthState>,
+    ctx: Context<RouterState>,
     @pathParam("locale", pIntl) intl: IntlShape,
   ) {
     return this.renderPage(ctx, Pages.practice, intl);
   }
 
   @http.GET("/index")
-  async ["legacy-index"](ctx: Context<RouterState & AuthState>) {
+  async ["legacy-index"](ctx: Context<RouterState>) {
     return this.renderPage(ctx, Pages.practice);
   }
 
   @http.GET(`/{locale:${localePattern}}/index`)
   async ["legacy-index-i18n"](
-    ctx: Context<RouterState & AuthState>,
+    ctx: Context<RouterState>,
     @pathParam("locale", pIntl) intl: IntlShape,
   ) {
     return this.renderPage(ctx, Pages.practice, intl);
   }
 
-  @http.GET(`${Pages.account.path}`)
-  async ["account"](ctx: Context<RouterState & AuthState>) {
-    return this.renderPage(ctx, Pages.account);
-  }
 
-  @http.GET(`/{locale:${localePattern}}${Pages.account.path}`)
-  async ["account-i18n"](
-    ctx: Context<RouterState & AuthState>,
-    @pathParam("locale", pIntl) intl: IntlShape,
-  ) {
-    return this.renderPage(ctx, Pages.account, intl);
-  }
 
 
 
@@ -73,26 +59,26 @@ export class Controller {
 
 
   @http.GET(`${Pages.layouts.path}`)
-  async ["layouts"](ctx: Context<RouterState & AuthState>) {
+  async ["layouts"](ctx: Context<RouterState>) {
     return this.renderPage(ctx, Pages.layouts);
   }
 
   @http.GET(`/{locale:${localePattern}}${Pages.layouts.path}`)
   async ["layouts-i18n"](
-    ctx: Context<RouterState & AuthState>,
+    ctx: Context<RouterState>,
     @pathParam("locale", pIntl) intl: IntlShape,
   ) {
     return this.renderPage(ctx, Pages.layouts, intl);
   }
 
   @http.GET(`${Pages.typingTest.path}`)
-  async ["typing-test"](ctx: Context<RouterState & AuthState>) {
+  async ["typing-test"](ctx: Context<RouterState>) {
     return this.renderPage(ctx, Pages.typingTest);
   }
 
   @http.GET(`/{locale:${localePattern}}${Pages.typingTest.path}`)
   async ["typing-test-i18n"](
-    ctx: Context<RouterState & AuthState>,
+    ctx: Context<RouterState>,
     @pathParam("locale", pIntl) intl: IntlShape,
   ) {
     return this.renderPage(ctx, Pages.typingTest, intl);
@@ -100,51 +86,23 @@ export class Controller {
 
 
 
-  @http.GET(`${Pages.termsOfService.path}`)
-  async ["terms-of-service"](ctx: Context<RouterState & AuthState>) {
-    return this.renderPage(ctx, Pages.termsOfService);
-  }
 
-  @http.GET(`/{locale:${localePattern}}${Pages.termsOfService.path}`)
-  async ["terms-of-service-i18n"](
-    ctx: Context<RouterState & AuthState>,
-    @pathParam("locale", pIntl) intl: IntlShape,
-  ) {
-    return this.renderPage(ctx, Pages.termsOfService, intl);
-  }
-
-  @http.GET(`${Pages.privacyPolicy.path}`)
-  async ["privacy-policy"](ctx: Context<RouterState & AuthState>) {
-    return this.renderPage(ctx, Pages.privacyPolicy);
-  }
-
-  @http.GET(`/{locale:${localePattern}}${Pages.privacyPolicy.path}`)
-  async ["privacy-policy-i18n"](
-    ctx: Context<RouterState & AuthState>,
-    @pathParam("locale", pIntl) intl: IntlShape,
-  ) {
-    return this.renderPage(ctx, Pages.privacyPolicy, intl);
-  }
 
   async pageData(
-    ctx: Context<RouterState & AuthState>,
+    ctx: Context<RouterState>,
     { locale }: IntlShape,
   ): Promise<PageData> {
-    const { user, publicUser, sessionId } = ctx.state;
-    // Use session ID for settings when there's no user (anonymous users)
-    const settingsId = user?.id ?? sessionId;
-    const settings = await this.database.get(settingsId);
     return {
       base: this.canonicalUrl,
       locale,
-      user: user?.toDetails() ?? null,
-      publicUser,
-      settings: settings?.toJSON() ?? null,
+      user: null,
+      publicUser: null,
+      settings: null,
     };
   }
 
   async renderPage(
-    ctx: Context<RouterState & AuthState>,
+    ctx: Context<RouterState>,
     page: PageInfo,
     intl: IntlShape | null = null,
   ): Promise<string> {
@@ -172,7 +130,7 @@ export class Controller {
   }
 }
 
-function themePrefs(ctx: Context<RouterState & AuthState>): ThemePrefs {
+function themePrefs(ctx: Context<RouterState>): ThemePrefs {
   let cookie = ctx.cookies.get(ThemePrefs.cookieKey) || null;
   if (cookie) {
     try {

@@ -4,8 +4,7 @@ import { Container } from "@fastr/invert";
 import { Manifest } from "@mkboard/assets";
 import { ConfigModule, Env } from "@mkboard/config";
 import { Logger } from "@mkboard/logger";
-import { Game } from "@mkboard/multiplayer-server";
-import { ApplicationModule, kGame, kMain } from "./app/index.ts";
+import { ApplicationModule, kMain } from "./app/index.ts";
 import { ServerModule } from "./server/module.ts";
 import { Service } from "./server/service.ts";
 
@@ -23,10 +22,6 @@ if (cluster.isPrimary) {
   });
   process.title = "mkboard master process";
   fork({ args: ["http"] });
-  fork({ args: ["http"] });
-  fork({ args: ["http"] });
-  fork({ args: ["http"] });
-  fork({ args: ["ws"] });
 } else {
   const container = makeContainer();
   const service = container.get(Service);
@@ -37,14 +32,6 @@ if (cluster.isPrimary) {
         app: container.get(Application, kMain),
         port: Env.getPort("SERVER_PORT", 3000),
       });
-      break;
-    case "ws":
-      process.title = "mkboard game server worker process";
-      service.start({
-        app: container.get(Application, kGame),
-        port: Env.getPort("SERVER_PORT_WS", 3001),
-      });
-      container.get(Game).start();
       break;
   }
 }

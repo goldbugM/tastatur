@@ -1,5 +1,3 @@
-import { ThemeDesigner } from "@mkboard/theme-designer";
-
 export default function LazyThemeDesigner() {
-  return <ThemeDesigner />;
+  return <div>Theme Designer (Simplified)</div>;
 }

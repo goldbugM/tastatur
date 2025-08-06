@@ -12,9 +12,7 @@ import {
 } from "@mkboard/pages-shared";
 import { ThemePrefs, useTheme } from "@mkboard/themes";
 import {
-  CloudflareAnalytics,
-  GoogleTagManager,
-  SetupAds,
+  Styles,
 } from "@mkboard/thirdparties";
 import { type ReactNode } from "react";
 import { useIntl } from "react-intl";
@@ -32,15 +30,7 @@ export function Shell({
   return (
     <Html>
       <Head page={page}>
-        {isPremiumUser(publicUser) || (
-          <>
-            <CloudflareAnalytics />
-            <GoogleTagManager />
-            <SetupAds>
-              <ScriptAssets entrypoint="ads" />
-            </SetupAds>
-          </>
-        )}
+
       </Head>
       <Body>
         {isBot(headers) ? <Content page={page} /> : <LoadingProgress />}

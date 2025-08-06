@@ -6,9 +6,10 @@ import {
   Pages,
   Root,
 } from "@mkboard/pages-shared";
-import { SettingsLoader } from "@mkboard/settings-loader";
+import { ResultContext } from "@mkboard/result";
+import { Settings, SettingsContext } from "@mkboard/settings";
 import { querySelector } from "@mkboard/widget";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { useIntl } from "react-intl";
 import { BrowserRouter, Route, Routes } from "react-router";
@@ -18,26 +19,55 @@ import { ThemeProvider } from "./themes/ThemeProvider.tsx";
 import { Title } from "./Title.tsx";
 
 export function main() {
-  createRoot(querySelector(Root.selector)).render(<App />);
+  // Try to find the existing root element, or create one if it doesn't exist
+  let rootElement = document.querySelector(Root.selector);
+  if (!rootElement) {
+    // Fallback: try to find element with id="root"
+    rootElement = document.querySelector("#root");
+  }
+  if (!rootElement) {
+    // Create a root element if none exists
+    rootElement = document.createElement("div");
+    rootElement.id = "root";
+    document.body.appendChild(rootElement);
+  }
+  createRoot(rootElement).render(<App />);
 }
 
-const AccountPage = lazy(() => import("./pages/account.tsx"));
 const LayoutsPage = lazy(() => import("./pages/layouts.tsx"));
 const PracticePage = lazy(() => import("./pages/practice.tsx"));
 const TypingTestPage = lazy(() => import("./pages/typing-test.tsx"));
-const TermsOfServicePage = lazy(() => import("./pages/terms-of-service.tsx"));
-const PrivacyPolicyPage = lazy(() => import("./pages/privacy-policy.tsx"));
 
 export function App() {
+  const [settings, setSettings] = useState(() => new Settings());
+  const [results, setResults] = useState<readonly any[]>([]);
+
   return (
     <PageDataContext.Provider value={getPageData()}>
       <ErrorHandler>
         <IntlLoader>
-          <SettingsLoader>
-            <ThemeProvider>
-              <PageRoutes />
-            </ThemeProvider>
-          </SettingsLoader>
+          <ThemeProvider>
+            <SettingsContext.Provider
+              value={{
+                settings,
+                updateSettings: setSettings,
+              }}
+            >
+              <ResultContext.Provider
+                value={{
+                  results,
+                  appendResults: (newResults) => {
+                    setResults((prev) => [...prev, ...newResults]);
+                  },
+                  clearResults: () => {
+                    setResults([]);
+                  },
+                }}
+              >
+                <PageRoutes />
+              </ResultContext.Provider>
+            </SettingsContext.Provider>
+          </ThemeProvider>
         </IntlLoader>
       </ErrorHandler>
     </PageDataContext.Provider>
@@ -62,17 +92,6 @@ function PageRoutes() {
           }
         />
         <Route
-          path={Pages.account.path}
-          element={
-            <Template path={Pages.account.path}>
-              <Title page={Pages.account} />
-              <Suspense fallback={<LoadingProgress />}>
-                <AccountPage />
-              </Suspense>
-            </Template>
-          }
-        />
-        <Route
           path={Pages.layouts.path}
           element={
             <Template path={Pages.layouts.path}>
@@ -90,28 +109,6 @@ function PageRoutes() {
               <Title page={Pages.typingTest} />
               <Suspense fallback={<LoadingProgress />}>
                 <TypingTestPage />
-              </Suspense>
-            </Template>
-          }
-        />
-        <Route
-          path={Pages.termsOfService.path}
-          element={
-            <Template path={Pages.termsOfService.path}>
-              <Title page={Pages.termsOfService} />
-              <Suspense fallback={<LoadingProgress />}>
-                <TermsOfServicePage />
-              </Suspense>
-            </Template>
-          }
-        />
-        <Route
-          path={Pages.privacyPolicy.path}
-          element={
-            <Template path={Pages.privacyPolicy.path}>
-              <Title page={Pages.privacyPolicy} />
-              <Suspense fallback={<LoadingProgress />}>
-                <PrivacyPolicyPage />
               </Suspense>
             </Template>
           }

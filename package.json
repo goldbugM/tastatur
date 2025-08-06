@@ -28,6 +28,7 @@
     "format": "prettier '{**/*,*}.{js,ts,tsx,less,css}' --write",
     "build": "cross-env NODE_ENV=production webpack",
     "build-dev": "cross-env NODE_ENV=development webpack",
+    "build-static": "cross-env NODE_ENV=production webpack --config-name browser && node scripts/build-static.js",
     "watch": "cross-env NODE_ENV=development webpack --watch",
     "start": "cross-env NODE_ENV=development node --enable-source-maps ./root/index.js",
     "start-dev": "cross-env NODE_ENV=development node --enable-source-maps ./root/index.js",

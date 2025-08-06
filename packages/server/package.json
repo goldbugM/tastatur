@@ -6,25 +6,14 @@
   "dependencies": {
     "@mkboard/assets": "*",
     "@mkboard/config": "*",
-    "@mkboard/database": "*",
-    "@mkboard/highscores": "*",
     "@mkboard/intl": "*",
     "@mkboard/logger": "*",
-    "@mkboard/multiplayer-server": "*",
-    "@mkboard/multiplayer-shared": "*",
-    "@mkboard/oauth": "*",
     "@mkboard/pages-server": "*",
     "@mkboard/pages-shared": "*",
     "@mkboard/publicid": "*",
     "@mkboard/result": "*",
     "@mkboard/result-io": "*",
-    "@mkboard/result-userdata": "*",
-    "@mkboard/settings": "*",
-    "@mkboard/settings-database": "*",
-    "@mkboard/themes": "*",
-    "@paddle/paddle-node-sdk": "^3.0.0",
-    "@types/ws": "^8.18.1",
-    "ws": "^8.18.3"
+    "@mkboard/themes": "*"
   },
   "devDependencies": {},
   "scripts": {

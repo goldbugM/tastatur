@@ -1,4 +1,3 @@
-import { authenticate, request } from "@fastr/client";
 import { injectable } from "@fastr/invert";
 import { Env } from "@mkboard/config";
 import { Mailer } from "./types.ts";
@@ -10,10 +9,10 @@ export class MailgunConfig {
   readonly from: string;
 
   constructor() {
-    this.domain = Env.getString("MAIL_DOMAIN");
-    this.key = Env.getString("MAIL_KEY");
-    const fromAddress = Env.getString("MAIL_FROM_ADDRESS", "k@tastatur.com");
-  const fromName = Env.getString("MAIL_FROM_NAME", "tastatur.com");
+    this.domain = Env.getString("MAIL_DOMAIN", "localhost");
+    this.key = Env.getString("MAIL_KEY", "disabled");
+    const fromAddress = Env.getString("MAIL_FROM_ADDRESS", "noreply@localhost");
+    const fromName = Env.getString("MAIL_FROM_NAME", "Local App");
     this.from = `${fromName} <${fromAddress}>`;
   }
 }
@@ -31,30 +30,10 @@ export class MailgunMailer extends Mailer {
     text,
     html,
   }: Mailer.Message): Promise<void> {
-    const body = new URLSearchParams([
-      ["from", from],
-      ["to", to],
-      ["subject", subject],
-    ]);
-    if (text) {
-      body.append("text", text);
-    }
-    if (html) {
-      body.append("html", html);
-    }
-
-    const response = await request
-      .use(authenticate.basic("api", this.config.key))
-      .POST(`https://api.mailgun.net/v3/${this.config.domain}/messages`)
-      .send(body);
-
-    if (response.ok) {
-      const { id } = await response.body.json<{ id: string }>();
-    } else {
-      response.abort();
-      throw new Error(
-        `Unable to send email: ${response.status} ${response.statusText}`,
-      );
-    }
+    // Disabled - external email service removed
+    // Email would have been sent to: ${to}
+    // Subject: ${subject}
+    console.log(`[EMAIL DISABLED] Would send email to: ${to}, Subject: ${subject}`);
+    return Promise.resolve();
   }
 }
