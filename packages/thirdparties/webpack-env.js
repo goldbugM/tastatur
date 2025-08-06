@@ -1,8 +1,11 @@
-import { join } from "node:path";
+import { dirname,join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { config } from "dotenv";
 
-config({ path: join(import.meta.dirname, "lib", "config-env") });
-config({ path: join(import.meta.dirname, "lib", "config-env.example") });
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+config({ path: join(__dirname, "lib", "config-env") });
+config({ path: join(__dirname, "lib", "config-env.example") });
 
 const ENV = {};
 

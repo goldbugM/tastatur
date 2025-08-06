@@ -1,6 +1,7 @@
 /* eslint-disable n/no-extraneous-import */
 
-import { join } from "node:path";
+import { dirname,join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { intlTransformer } from "@mkboard/scripts/intl-transformer.js";
 import { ManifestPlugin } from "@mkboard/scripts/webpack-manifest.js";
 import { ENV } from "@mkboard/thirdparties/webpack-env.js";
@@ -11,10 +12,11 @@ import TerserPlugin from "terser-webpack-plugin";
 import webpack from "webpack";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const mode = process.env.NODE_ENV || "production";
 
 const isVendor = (excludedVendors) => {
-  const vendorsDir = join(import.meta.dirname, "node_modules");
+  const vendorsDir = join(__dirname, "node_modules");
   return ({ resource }) => {
     // A vendor package is anything in the root /node_modules/ dir
     // except for some explicitly excluded packages.
@@ -101,13 +103,13 @@ export default [
     name: "server",
     target: "node",
     mode,
-    context: import.meta.dirname,
+    context: __dirname,
     entry: {
       index: "./packages/server/lib/main.ts",
       mkboard: "./packages/server-cli/lib/main.ts",
     },
     output: {
-      path: join(import.meta.dirname, "root", "lib"),
+      path: join(__dirname, "root", "lib"),
       clean: false,
       filename: "[name].js",
       chunkFilename: "[name].js",
@@ -173,14 +175,14 @@ export default [
     name: "browser",
     target: "web",
     mode,
-    context: import.meta.dirname,
+    context: __dirname,
     entry: {
       browser: "./packages/mkboard-pages-browser/lib/entry.ts",
       server: "./packages/mkboard-pages-server/lib/entry.ts",
       ads: "./packages/thirdparties-ads/lib/entry.ts",
     },
     output: {
-      path: join(import.meta.dirname, "root", "public", "assets"),
+      path: join(__dirname, "root", "public", "assets"),
       clean: true,
       publicPath: "/assets/",
       filename: `${filename}.js`,
