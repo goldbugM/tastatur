@@ -50,14 +50,6 @@ export class Controller {
     return this.renderPage(ctx, Pages.practice, intl);
   }
 
-
-
-
-
-
-
-
-
   @http.GET(`${Pages.layouts.path}`)
   async ["layouts"](ctx: Context<RouterState>) {
     return this.renderPage(ctx, Pages.layouts);
@@ -84,10 +76,6 @@ export class Controller {
     return this.renderPage(ctx, Pages.typingTest, intl);
   }
 
-
-
-
-
   async pageData(
     ctx: Context<RouterState>,
     { locale }: IntlShape,
@@ -96,7 +84,11 @@ export class Controller {
       base: this.canonicalUrl,
       locale,
       user: null,
-      publicUser: null,
+      publicUser: {
+        id: null,
+        name: "Anonymous",
+        imageUrl: null,
+      },
       settings: null,
     };
   }

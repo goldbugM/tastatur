@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn touch typing with this free online typing trainer">
+  <title>Typing Trainer - Learn Touch Typing</title>
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    #root {
+      min-height: 100vh;
+    }
+    .loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div id="root">
+    <div class="loading">Loading...</div>
+  </div>
+  <script>
+    // Initialize page data for the SPA
+    window.__PAGE_DATA__ = {
+      base: window.location.origin + '/',
+      locale: 'en',
+      user: null,
+      publicUser: null,
+      settings: {
+        layout: 'us',
+        emulation: true,
+        soundVolume: 0.5,
+        textInput: {
+          forgiveErrors: true,
+          spaceSkipsWords: true
+        }
+      },
+      prefs: {
+        lesson: {
+          guided: true,
+          dailyGoal: 15,
+          targetSpeed: 35,
+          accuracyThreshold: 0.9,
+          wordListSize: 30,
+          naturalWords: true,
+          capitalLetters: 0.1,
+          punctuationCharacters: 0.1,
+          numbers: false,
+          specialCharacters: false,
+          longWordsOnly: false,
+          repeatWords: false,
+          shuffleWords: false
+        },
+        keyboard: {
+          showKeyboard: true,
+          showZones: false,
+          showColors: true
+        },
+        sound: {
+          volume: 0.5,
+          clickSound: false,
+          errorSound: false
+        }
+      },
+      messages: {"about.description":"Learn touch typing online using TypingClub's free typing courses. It includes 650 typing games, typing tests and videos.","about.title":"About","account.anonymousUser.description":"You are not signed in. Your results are stored locally and may be lost.","account.anonymousUser.title":"Anonymous User","account.deleteAccount.description":"Delete your account and all associated data.","account.deleteAccount.title":"Delete Account","account.deleteAccountDialog.message":"Are you sure you want to delete your account? This action cannot be undone.","account.deleteAccountDialog.title":"Delete Account","account.description":"Manage your account settings and preferences.","account.publicProfile.description":"Your public profile is visible to other users.","account.publicProfile.title":"Public Profile","account.signedInUser.description":"You are signed in. Your results are stored in the cloud.","account.signedInUser.title":"Signed In User","account.title":"Account","calendar.april":"April","calendar.august":"August","calendar.december":"December","calendar.february":"February","calendar.friday":"Friday","calendar.january":"January","calendar.july":"July","calendar.june":"June","calendar.march":"March","calendar.may":"May","calendar.monday":"Monday","calendar.november":"November","calendar.october":"October","calendar.saturday":"Saturday","calendar.september":"September","calendar.sunday":"Sunday","calendar.thursday":"Thursday","calendar.tuesday":"Tuesday","calendar.wednesday":"Wednesday","color.blue":"Blue","color.gray":"Gray","color.green":"Green","color.orange":"Orange","color.red":"Red","color.yellow":"Yellow","help.example.caption":"Example","help.example.text":"This is an example.","help.keyboardZones.caption":"Keyboard Zones","help.keyboardZones.text":"Each finger is responsible for a specific zone on the keyboard.","help.title":"Help","keyboard.key.AltLeft":"Left Alt","keyboard.key.AltRight":"Right Alt","keyboard.key.ArrowDown":"Down Arrow","keyboard.key.ArrowLeft":"Left Arrow","keyboard.key.ArrowRight":"Right Arrow","keyboard.key.ArrowUp":"Up Arrow","keyboard.key.Backquote":"`","keyboard.key.Backslash":"\\","keyboard.key.Backspace":"Backspace","keyboard.key.BracketLeft":"[","keyboard.key.BracketRight":"]","keyboard.key.CapsLock":"Caps Lock","keyboard.key.Comma":",","keyboard.key.ControlLeft":"Left Ctrl","keyboard.key.ControlRight":"Right Ctrl","keyboard.key.Delete":"Delete","keyboard.key.Digit0":"0","keyboard.key.Digit1":"1","keyboard.key.Digit2":"2","keyboard.key.Digit3":"3","keyboard.key.Digit4":"4","keyboard.key.Digit5":"5","keyboard.key.Digit6":"6","keyboard.key.Digit7":"7","keyboard.key.Digit8":"8","keyboard.key.Digit9":"9","keyboard.key.End":"End","keyboard.key.Enter":"Enter","keyboard.key.Equal":"=","keyboard.key.Escape":"Escape","keyboard.key.F1":"F1","keyboard.key.F10":"F10","keyboard.key.F11":"F11","keyboard.key.F12":"F12","keyboard.key.F2":"F2","keyboard.key.F3":"F3","keyboard.key.F4":"F4","keyboard.key.F5":"F5","keyboard.key.F6":"F6","keyboard.key.F7":"F7","keyboard.key.F8":"F8","keyboard.key.F9":"F9","keyboard.key.Home":"Home","keyboard.key.Insert":"Insert","keyboard.key.KeyA":"A","keyboard.key.KeyB":"B","keyboard.key.KeyC":"C","keyboard.key.KeyD":"D","keyboard.key.KeyE":"E","keyboard.key.KeyF":"F","keyboard.key.KeyG":"G","keyboard.key.KeyH":"H","keyboard.key.KeyI":"I","keyboard.key.KeyJ":"J","keyboard.key.KeyK":"K","keyboard.key.KeyL":"L","keyboard.key.KeyM":"M","keyboard.key.KeyN":"N","keyboard.key.KeyO":"O","keyboard.key.KeyP":"P","keyboard.key.KeyQ":"Q","keyboard.key.KeyR":"R","keyboard.key.KeyS":"S","keyboard.key.KeyT":"T","keyboard.key.KeyU":"U","keyboard.key.KeyV":"V","keyboard.key.KeyW":"W","keyboard.key.KeyX":"X","keyboard.key.KeyY":"Y","keyboard.key.KeyZ":"Z","keyboard.key.MetaLeft":"Left Meta","keyboard.key.MetaRight":"Right Meta","keyboard.key.Minus":"-","keyboard.key.NumLock":"Num Lock","keyboard.key.Numpad0":"Numpad 0","keyboard.key.Numpad1":"Numpad 1","keyboard.key.Numpad2":"Numpad 2","keyboard.key.Numpad3":"Numpad 3","keyboard.key.Numpad4":"Numpad 4","keyboard.key.Numpad5":"Numpad 5","keyboard.key.Numpad6":"Numpad 6","keyboard.key.Numpad7":"Numpad 7","keyboard.key.Numpad8":"Numpad 8","keyboard.key.Numpad9":"Numpad 9","keyboard.key.NumpadAdd":"Numpad +","keyboard.key.NumpadDecimal":"Numpad .","keyboard.key.NumpadDivide":"Numpad /","keyboard.key.NumpadEnter":"Numpad Enter","keyboard.key.NumpadMultiply":"Numpad *","keyboard.key.NumpadSubtract":"Numpad -","keyboard.key.PageDown":"Page Down","keyboard.key.PageUp":"Page Up","keyboard.key.Period":".","keyboard.key.Quote":"'","keyboard.key.ScrollLock":"Scroll Lock","keyboard.key.Semicolon":";","keyboard.key.ShiftLeft":"Left Shift","keyboard.key.ShiftRight":"Right Shift","keyboard.key.Slash":"/","keyboard.key.Space":"Space","keyboard.key.Tab":"Tab","keyboard.layout.be":"Belgian","keyboard.layout.br":"Brazilian","keyboard.layout.ca":"Canadian","keyboard.layout.ch":"Swiss","keyboard.layout.colemak":"Colemak","keyboard.layout.de":"German","keyboard.layout.dvorak":"Dvorak","keyboard.layout.es":"Spanish","keyboard.layout.fr":"French","keyboard.layout.it":"Italian","keyboard.layout.jp":"Japanese","keyboard.layout.pl":"Polish","keyboard.layout.pt":"Portuguese","keyboard.layout.ru":"Russian","keyboard.layout.uk":"Ukrainian","keyboard.layout.us":"US","lesson.accuracy":"Accuracy","lesson.characters":"Characters","lesson.charactersPerMinute":"Characters per minute","lesson.errors":"Errors","lesson.lesson":"Lesson","lesson.speed":"Speed","lesson.time":"Time","lesson.wordsPerMinute":"Words per minute","metric.accuracy.description":"Accuracy is the percentage of characters typed correctly.","metric.accuracy.name":"Accuracy","metric.charactersPerMinute.description":"Characters per minute is the number of characters typed per minute.","metric.charactersPerMinute.name":"Characters per minute","metric.speed.description":"Speed is the number of words typed per minute.","metric.speed.name":"Speed","metric.wordsPerMinute.description":"Words per minute is the number of words typed per minute.","metric.wordsPerMinute.name":"Words per minute","page.help.title":"Help","page.layouts.title":"Layouts","page.practice.title":"Practice","page.profile.title":"Profile","page.typingTest.title":"Typing Test","practice.accuracy.description":"Accuracy is the percentage of characters typed correctly.","practice.accuracy.name":"Accuracy","practice.charactersPerMinute.description":"Characters per minute is the number of characters typed per minute.","practice.charactersPerMinute.name":"Characters per minute","practice.lesson.description":"Practice typing with guided lessons.","practice.lesson.title":"Lesson","practice.speed.description":"Speed is the number of words typed per minute.","practice.speed.name":"Speed","practice.wordsPerMinute.description":"Words per minute is the number of words typed per minute.","practice.wordsPerMinute.name":"Words per minute","profile.accuracy.description":"Your typing accuracy over time.","profile.accuracy.name":"Accuracy","profile.charactersPerMinute.description":"Your typing speed in characters per minute.","profile.charactersPerMinute.name":"Characters per minute","profile.description":"View your typing progress and statistics.","profile.speed.description":"Your typing speed in words per minute.","profile.speed.name":"Speed","profile.title":"Profile","profile.wordsPerMinute.description":"Your typing speed in words per minute.","profile.wordsPerMinute.name":"Words per minute","settings.keyboard.description":"Configure your keyboard settings.","settings.keyboard.title":"Keyboard","settings.lesson.description":"Configure your lesson settings.","settings.lesson.title":"Lesson","settings.sound.description":"Configure your sound settings.","settings.sound.title":"Sound","settings.title":"Settings","typingTest.accuracy.description":"Accuracy is the percentage of characters typed correctly.","typingTest.accuracy.name":"Accuracy","typingTest.charactersPerMinute.description":"Characters per minute is the number of characters typed per minute.","typingTest.charactersPerMinute.name":"Characters per minute","typingTest.description":"Test your typing speed and accuracy.","typingTest.speed.description":"Speed is the number of words typed per minute.","typingTest.speed.name":"Speed","typingTest.title":"Typing Test","typingTest.wordsPerMinute.description":"Words per minute is the number of words typed per minute.","typingTest.wordsPerMinute.name":"Words per minute"}
+    };
+    console.log('Page data initialized with messages:', Object.keys(window.__PAGE_DATA__.messages || {}).length, 'entries');
+  </script>
+  <script src="/assets/shared-vendor.js"></script>
+  <script src="/assets/browser.js"></script>
+</body>
+</html>

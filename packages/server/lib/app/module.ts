@@ -11,7 +11,6 @@ import { conditional } from "@fastr/middleware-conditional";
 import { SessionHandler } from "@fastr/middleware-session";
 import { staticFiles } from "@fastr/middleware-static-files";
 import { ManifestModule } from "./assets.ts";
-import { loadUser } from "./auth/index.ts";
 import { cacheControl } from "./cachecontrol.ts";
 import { ErrorHandler } from "./error/index.ts";
 import { MailModule } from "./mail/index.ts";
@@ -40,9 +39,6 @@ export class ApplicationModule implements Module {
       .use(compress())
       .use(staticFiles(publicDir, { cacheControl }))
       .use(SessionHandler)
-      .use(loadUser())
       .use(mainRoutes());
   }
-
-
 }

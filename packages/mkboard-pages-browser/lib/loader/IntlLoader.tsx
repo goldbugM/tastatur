@@ -26,18 +26,25 @@ export function useIntlLoader(): IntlShape | null {
   useEffect(() => {
     let didCancel = false;
 
+    console.log("IntlLoader: Starting to load intl for locale:", locale);
     loadIntl(locale)
       .then((intl) => {
+        console.log("IntlLoader: Successfully loaded intl:", intl);
         if (!didCancel) {
           setIntl(intl);
+          console.log("IntlLoader: Set intl state");
         }
       })
-      .catch(catchError);
+      .catch((error) => {
+        console.error("IntlLoader: Failed to load intl:", error);
+        catchError(error);
+      });
 
     return () => {
       didCancel = true;
     };
   }, [locale]);
 
+  console.log("IntlLoader: Current intl state:", intl);
   return intl;
 }

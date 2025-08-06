@@ -19,19 +19,7 @@ import { ThemeProvider } from "./themes/ThemeProvider.tsx";
 import { Title } from "./Title.tsx";
 
 export function main() {
-  // Try to find the existing root element, or create one if it doesn't exist
-  let rootElement = document.querySelector(Root.selector);
-  if (!rootElement) {
-    // Fallback: try to find element with id="root"
-    rootElement = document.querySelector("#root");
-  }
-  if (!rootElement) {
-    // Create a root element if none exists
-    rootElement = document.createElement("div");
-    rootElement.id = "root";
-    document.body.appendChild(rootElement);
-  }
-  createRoot(rootElement).render(<App />);
+  createRoot(querySelector(Root.selector)).render(<App />);
 }
 
 const LayoutsPage = lazy(() => import("./pages/layouts.tsx"));

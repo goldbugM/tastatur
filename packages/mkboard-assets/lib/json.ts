@@ -51,12 +51,20 @@ export function manifestFromJson(json: ManifestJson): Manifest {
     }
 
     assetPath(name: string): string {
-      const path = assets.get(name);
+      // Try the original path first
+      let path = assets.get(name);
+
+      // If not found, try converting forward slashes to backslashes (Windows manifest format)
+      if (path == null) {
+        const backslashPath = name.replace(/\//g, "\\");
+        path = assets.get(backslashPath);
+      }
+
       if (path == null) {
         throw new Error(`Unknown asset "${name}"`);
       } else {
         // Normalize Windows backslashes to forward slashes for web compatibility
-        return path.replace(/\\/g, '/');
+        return path.replace(/\\/g, "/");
       }
     }
   })();
@@ -75,14 +83,14 @@ function makeEntrypoint({
 
 function makeEntrypointScript(path: string): Script {
   return {
-    src: path.replace(/\\/g, '/'),
+    src: path.replace(/\\/g, "/"),
     defer: true,
   };
 }
 
 function makeEntrypointStylesheet(path: string): StylesheetLink {
   return {
-    href: path.replace(/\\/g, '/'),
+    href: path.replace(/\\/g, "/"),
     rel: "stylesheet",
   };
 }

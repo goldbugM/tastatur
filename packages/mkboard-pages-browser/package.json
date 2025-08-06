@@ -14,6 +14,8 @@
     "@mkboard/page-typing-test": "*",
     "@mkboard/pages-shared": "*",
     "@mkboard/request": "*",
+    "@mkboard/result": "*",
+    "@mkboard/settings": "*",
     "@mkboard/themes": "*",
     "@mkboard/thirdparties": "*",
     "@mkboard/widget": "*"

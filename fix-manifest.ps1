@@ -4,10 +4,10 @@ $manifestPath = "c:\Users\mb\Desktop\keybr.com-master\root\public\assets\manifes
 # Read the manifest file
 $content = Get-Content $manifestPath -Raw
 
-# Replace all backslashes with forward slashes
-$fixedContent = $content -replace '\\\\assets\\\\', '/assets/'
+# Replace all double backslashes with forward slashes (for asset paths)
+$fixedContent = $content -replace '\\\\', '/'
 
 # Write the fixed content back
 Set-Content $manifestPath $fixedContent
 
-Write-Host "Fixed manifest.json paths - converted backslashes to forward slashes"
+Write-Host "Fixed manifest.json paths - converted all backslashes to forward slashes"
