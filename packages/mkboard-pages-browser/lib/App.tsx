@@ -19,7 +19,40 @@ import { ThemeProvider } from "./themes/ThemeProvider.tsx";
 import { Title } from "./Title.tsx";
 
 export function main() {
-  createRoot(querySelector(Root.selector)).render(<App />);
+  // Try to find the root element, with fallback to a generic root element
+  let rootElement;
+  try {
+    rootElement = querySelector(Root.selector);
+  } catch (error) {
+    console.warn(
+      `Root element with selector ${Root.selector} not found, trying fallback selectors`,
+    );
+    // Try common fallback selectors
+    const fallbackSelectors = [
+      "#root",
+      "[data-react-root]",
+      "body > div:first-child",
+    ];
+    for (const selector of fallbackSelectors) {
+      try {
+        rootElement = querySelector(selector);
+        console.log(`Using fallback selector: ${selector}`);
+        break;
+      } catch (e) {
+        continue;
+      }
+    }
+
+    if (!rootElement) {
+      // Create a root element if none exists
+      rootElement = document.createElement("div");
+      rootElement.id = "root";
+      document.body.appendChild(rootElement);
+      console.log("Created new root element");
+    }
+  }
+
+  createRoot(rootElement).render(<App />);
 }
 
 const LayoutsPage = lazy(() => import("./pages/layouts.tsx"));
