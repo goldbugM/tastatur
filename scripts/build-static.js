@@ -73,21 +73,26 @@ if (existsSync(manifestPath)) {
 // Helper function to get asset filename from manifest (cross-platform)
 function getAssetFilename(manifest, assetKey, defaultName) {
   if (!manifest.assets) return defaultName;
-  
+
   // Try different path formats (Windows and Unix)
   const possibleKeys = [
     `\\assets\\${assetKey}`,
     `/assets/${assetKey}`,
     `assets/${assetKey}`,
-    assetKey
+    assetKey,
   ];
-  
+
   for (const key of possibleKeys) {
     if (manifest.assets[key]) {
-      return manifest.assets[key].replace(/^.*[\\\/]/, ""); // Remove path, keep filename
+      const fullPath = manifest.assets[key];
+      const lastSlash = Math.max(
+        fullPath.lastIndexOf("/"),
+        fullPath.lastIndexOf("\\"),
+      );
+      return lastSlash >= 0 ? fullPath.substring(lastSlash + 1) : fullPath;
     }
   }
-  
+
   return defaultName;
 }
 
@@ -96,19 +101,38 @@ const browserJs = getAssetFilename(manifest, "browser.js", "browser.js");
 const serverJs = getAssetFilename(manifest, "server.js", "server.js");
 
 // Get favicon filenames from manifest
-const favicon16 = getAssetFilename(manifest, "favicon-16x16.png", "favicon-16x16.png");
-const favicon32 = getAssetFilename(manifest, "favicon-32x32.png", "favicon-32x32.png");
-const favicon96 = getAssetFilename(manifest, "favicon-96x96.png", "favicon-96x96.png");
+const favicon16 = getAssetFilename(
+  manifest,
+  "favicon-16x16.png",
+  "favicon-16x16.png",
+);
+const favicon32 = getAssetFilename(
+  manifest,
+  "favicon-32x32.png",
+  "favicon-32x32.png",
+);
+const favicon96 = getAssetFilename(
+  manifest,
+  "favicon-96x96.png",
+  "favicon-96x96.png",
+);
 
 // Get CSS from entrypoints.browser.assets.css (first CSS file)
-const stylesCSS =
+let stylesCSS = "styles.css";
+if (
   manifest.entrypoints &&
   manifest.entrypoints.browser &&
   manifest.entrypoints.browser.assets &&
   manifest.entrypoints.browser.assets.css &&
   manifest.entrypoints.browser.assets.css[0]
-    ? manifest.entrypoints.browser.assets.css[0].replace(/^.*[\\\/]/, "") // Remove path, keep filename
-    : "styles.css";
+) {
+  const fullPath = manifest.entrypoints.browser.assets.css[0];
+  const lastSlash = Math.max(
+    fullPath.lastIndexOf("/"),
+    fullPath.lastIndexOf("\\"),
+  );
+  stylesCSS = lastSlash >= 0 ? fullPath.substring(lastSlash + 1) : fullPath;
+}
 
 // Create the main index.html
 const indexHtml = `<!DOCTYPE html>
