@@ -1,9 +1,5 @@
+import { mdiKeyboard, mdiKeyboardOutline, mdiSpeedometer } from "@mdi/js";
 import { defaultLocale } from "@mkboard/intl";
-import {
-  mdiKeyboard,
-  mdiKeyboardOutline,
-  mdiSpeedometer,
-} from "@mdi/js";
 import { defineMessage, type MessageDescriptor } from "react-intl";
 import { type AnonymousUser, type AnyUser, type NamedUser } from "./types.ts";
 
@@ -28,21 +24,19 @@ export namespace Pages {
   const meta: Meta[] = [
     { property: "fb:app_id", content: "545353762151265" },
     { property: "og:type", content: "website" },
-    { property: "og:url", content: "https://www.tastatur.com/" },
-    { property: "og:site_name", content: "tastatur.com - Typing lessons" },
-    { property: "og:title", content: "tastatur.com - Typing lessons" },
+    { property: "og:url", content: "http://localhost:3000/" },
+    { property: "og:site_name", content: "MKBoard - Typing lessons" },
+    { property: "og:title", content: "MKBoard - Typing lessons" },
     {
       property: "og:description",
       content:
         "Teaching the world to type at the speed of thought! Typing lessons that work.",
     },
-    { property: "og:image", content: "https://www.tastatur.com/cover.png" },
+    { property: "og:image", content: "http://localhost:3000/cover.png" },
     { name: "twitter:card", content: "summary" },
     { name: "twitter:site", content: "@tastaturcom" },
     { name: "twitter:creator", content: "@tastaturcom" },
   ];
-
-
 
   export const practice = {
     path: "/",
@@ -74,14 +68,6 @@ export namespace Pages {
       },
     ],
   } satisfies PageInfo;
-
-
-
-
-
-
-
-
 
   export const typingTest = {
     path: "/typing-test",
@@ -140,10 +126,6 @@ export namespace Pages {
       },
     ],
   } satisfies PageInfo;
-
-
-
-
 
   export function intlBase(locale: string): string {
     return locale === defaultLocale ? "" : `/${locale}`;

@@ -23,7 +23,7 @@ install(create(), global);
 
 function create(): JSDOM {
   const jsdom = new JSDOM(undefined, {
-    url: "https://www.tastatur.com/",
+    url: "http://localhost:3000/",
     pretendToBeVisual: false, // Disable requestAnimationFrame.
   });
   polyfill(jsdom);
