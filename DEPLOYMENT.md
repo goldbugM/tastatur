@@ -58,3 +58,10 @@ npx serve dist
 - User data is stored in browser local storage
 - All external services have been removed for privacy and simplicity
 - The app works completely offline after initial load
+
+## Recent Updates
+
+- **Asset Path Fix (2025-01-06)**: Fixed asset path resolution for GitHub Pages deployment
+  - Changed from absolute paths to relative paths for proper subdirectory support
+  - Fixed manifest access to use hashed filenames correctly
+  - Resolved 404 errors for CSS, JavaScript, and favicon files
